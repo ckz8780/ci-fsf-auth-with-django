@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, reverse
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from accounts.forms import UserLoginForm, UserRegistrationForm
+from django.contrib.auth.models import User
 
 def index(request):
     '''Return the index template'''
@@ -63,3 +64,8 @@ def registration(request):
     else:
         registration_form = UserRegistrationForm()
     return render(request, 'registration.html', {'registration_form': registration_form})
+    
+def profile(request):
+    '''Render the user's profile'''
+    user = User.objects.get(email=request.user.email)
+    return render(request, 'profile.html', {'profile': user})
