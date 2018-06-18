@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load bootstrap_tags %}
+
 {% block page_title %}
     Authentication With Django! | Registration
 {% endblock %}
@@ -13,7 +15,7 @@
     
     <form method="POST">
         {% csrf_token %}
-        {{ registration_form.as_p }}
-        <button type="submit">Register</button>
+        {{ registration_form | as_bootstrap }}
+        <button class="btn btn-default" type="submit">Register</button>
     </form>
 {% endblock %}
